@@ -1,0 +1,46 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Restaurants{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h1>All Cafes</h1>
+
+	  <table class="table">
+      {% for i in range(0,cafes|length) %}
+        {% if i == 0 %}
+          <thead>
+            <tr>
+              {% for j in range(0,cafes[i]|length) %}
+              <td>{{ cafes[i][j] }}</td>
+              {% endfor %}
+            </tr>
+          </thead>
+        <tbody>
+          {% else %}
+          <tr>
+            {% for j in range(0,cafes[i]|length) %}
+            {% if j == 1 %}
+            <td><a href="{{ cafes[i][j] }}">Mega Link</a></td>
+            {% else %}
+            <td>{{ cafes[i][j] }}</td>
+            {% endif %}
+            {% endfor %}
+          </tr>
+        </tbody>
+        {% endif %}
+
+      {% endfor %}
+  	</table>
+
+      <p><a href="{{ url_for('home') }}">Return to index page</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
